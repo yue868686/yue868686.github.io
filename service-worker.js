@@ -51,15 +51,11 @@ self.addEventListener('fetch', (event) => {
   const isApiRequest = event.request.url.includes('/api/') || 
                       event.request.url.includes('/rpc') ||
                       event.request.url.includes('api');
-  console.log('event.request.url ', event.request.url, isApiRequest)
+                       
   if (isApiRequest) {
-    // 完全不缓存策略：API请求总是直接从网络获取，不使用缓存
+    // API请求完全不缓存策略：总是直接从网络获取，不使用缓存
     event.respondWith(
-      fetch(event.request, {
-        headers: {
-          'Cache-Control': 'no-store' // 禁止缓存
-        }
-      }).catch(() => {
+      fetch(event.request).catch(() => {
         // 网络请求失败时直接返回错误响应，不从缓存获取
         return new Response('Network error occurred', {
           status: 408,
@@ -121,8 +117,6 @@ self.addEventListener('message', (event) => {
     });
   }
 });
-
-
 
 // 监听控制器变化事件，通知客户端有更新
 self.addEventListener('controllerchange', () => {
