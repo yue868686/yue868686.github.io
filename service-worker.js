@@ -50,8 +50,8 @@ self.addEventListener('fetch', (event) => {
   // 特别处理汇率API，确保总是获取最新数据
   const isApiRequest = event.request.url.includes('/api/') || 
                       event.request.url.includes('/rpc') ||
-                      event.request.url.includes('api.frankfurter.dev');
-  
+                      event.request.url.includes('api');
+  console.log('event.request.url ', event.request.url, isApiRequest)
   if (isApiRequest) {
     // 完全不缓存策略：API请求总是直接从网络获取，不使用缓存
     event.respondWith(
