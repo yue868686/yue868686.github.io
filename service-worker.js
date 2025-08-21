@@ -55,7 +55,11 @@ self.addEventListener('fetch', (event) => {
   if (isApiRequest) {
     // 完全不缓存策略：API请求总是直接从网络获取，不使用缓存
     event.respondWith(
-      fetch(event.request).catch(() => {
+      fetch(event.request, {
+        headers: {
+          'Cache-Control': 'no-store' // 禁止缓存
+        }
+      }).catch(() => {
         // 网络请求失败时直接返回错误响应，不从缓存获取
         return new Response('Network error occurred', {
           status: 408,
