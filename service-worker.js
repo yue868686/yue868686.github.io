@@ -7,9 +7,6 @@ const CACHE_PREFIX = `${CACHE_NAME}-${CACHE_VERSION}`;
 const STATIC_ASSETS = [
   '/',
   '/index.html',
-  '/src/main.jsx',
-  '/src/App.jsx',
-  '/src/common.css',
   '/manifest.json',
   '/icons/icon-192x192.svg',
   '/icons/icon-512x512.svg'
@@ -124,10 +121,7 @@ self.addEventListener('message', (event) => {
   }
 });
 
-// 监听安装事件以检测更新
-self.addEventListener('install', (event) => {
-  // 自动更新逻辑已包含在之前的install事件处理中
-});
+
 
 // 监听控制器变化事件，通知客户端有更新
 self.addEventListener('controllerchange', () => {
