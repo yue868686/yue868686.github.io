@@ -47,22 +47,19 @@ self.addEventListener('activate', (event) => {
 // 监听fetch事件，实现离线优先策略
 self.addEventListener('fetch', (event) => {
   // 对于API请求，我们使用网络优先策略，避免缓存动态数据
-  const isApiRequest = event.request.url.includes('/api/') || event.request.url.includes('/rpc');
+  // 特别处理汇率API，确保总是获取最新数据
+  const isApiRequest = event.request.url.includes('/api/') || 
+                      event.request.url.includes('/rpc') ||
+                      event.request.url.includes('api.frankfurter.dev');
   
   if (isApiRequest) {
-    // 网络优先策略
+    // 完全不缓存策略：API请求总是直接从网络获取，不使用缓存
     event.respondWith(
       fetch(event.request).catch(() => {
-        // 如果网络请求失败，则尝试从缓存获取
-        return caches.match(event.request).then((response) => {
-          if (response) {
-            return response;
-          }
-          // 如果缓存中也没有，则返回一个错误响应
-          return new Response('Network error occurred', {
-            status: 408,
-            headers: { 'Content-Type': 'text/plain' }
-          });
+        // 网络请求失败时直接返回错误响应，不从缓存获取
+        return new Response('Network error occurred', {
+          status: 408,
+          headers: { 'Content-Type': 'text/plain' }
         });
       })
     );
