@@ -6,17 +6,32 @@
     <meta name="theme-color" content="#2196f3" />
     <meta name="description" content="A portable wallet for managing your cryptocurrency assets" />
     <link rel="manifest" href="/manifest.json" />
+    <link rel="manifest" href="/manifest.json" id="manifest-link">
     <!-- iOS支持 -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="Wallet" />
+    <meta name="apple-mobile-web-app-title" content="Wallet" id="apple-title"/>
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-192x192.svg" />
     <!-- 通用图标 -->
     <link rel="icon" type="image/svg+xml" sizes="32x32" href="/icons/icon-192x192.svg" />
     <link rel="icon" type="image/svg+xml" sizes="16x16" href="/icons/icon-192x192.svg" />
     <link rel="mask-icon" href="/icons/icon-192x192.svg" color="#2196f3" />
-    <title>Wallet</title>
-    <script type="module" crossorigin src="/assets/index-CeJl0zHt.js"></script>
+    <title id="title">Wallet</title>
+    <script>
+      // 根据浏览器语言切换 manifest
+      const isZh = navigator.language.includes('zh');
+      const manifest = isZh ? 'manifest-zh' : 'manifest';
+      const titleStr = isZh ? '钱包' : 'Wallet';
+
+      document.getElementById('manifest-link').href = `${manifest}.json`;
+
+      const appleTitle = document.getElementById('apple-title');
+      const title = document.getElementById('title');
+  
+      appleTitle.setAttribute('content', titleStr); // 英文标题
+      title.textContent = titleStr;
+    </script>
+    <script type="module" crossorigin src="/assets/index-e-7j-gKw.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-CKZ6TBfZ.css">
   </head>
   <body>
