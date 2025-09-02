@@ -1,7 +1,7 @@
 {
-  "name": "USDC Wallet",
-  "short_name": "USDC Wallet",
-  "description": "A portable USDC wallet for managing your cryptocurrency assets",
+  "name": "Crypto Wallet",
+  "short_name": "Wallet",
+  "description": "A portable wallet for managing your cryptocurrency assets",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
