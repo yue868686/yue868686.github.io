@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#2196f3" />
     <meta name="description" content="A portable wallet for managing your cryptocurrency assets" />
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="manifest" href="/manifest.json" id="manifest-link">
+    <link rel="manifest" href="/manifest.json" id="manifest-link" />
     <!-- iOS支持 -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -23,7 +22,7 @@
       const manifest = isZh ? 'manifest-zh' : 'manifest';
       const titleStr = isZh ? '钱包' : 'Wallet';
 
-      document.getElementById('manifest-link').href = `${manifest}.json`;
+      document.getElementById('manifest-link').href = `/${manifest}.json`;
 
       const appleTitle = document.getElementById('apple-title');
       const title = document.getElementById('title');
@@ -31,8 +30,13 @@
       appleTitle.setAttribute('content', titleStr); // 英文标题
       title.textContent = titleStr;
     </script>
-    <script type="module" crossorigin src="/assets/index-BupqNBts.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CKZ6TBfZ.css">
+    <script type="module" crossorigin src="/assets/index-BIDUi1LU.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/antd-D61CRulc.js">
+    <link rel="modulepreload" crossorigin href="/assets/qr-DMA3LBFM.js">
+    <link rel="modulepreload" crossorigin href="/assets/viem-DzTeDfjp.js">
+    <link rel="modulepreload" crossorigin href="/assets/crypto-BdufoeM_.js">
+    <link rel="modulepreload" crossorigin href="/assets/react-Cudyqgo0.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-O25ASSSi.css">
   </head>
   <body>
     <div id="root"></div>
